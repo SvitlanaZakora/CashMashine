@@ -27,7 +27,7 @@
 
 
 <div id = "prods" class="container" style = "display: block;">
-  <form id="listForm" action="/homePageCommodityExpert" method="post">
+  <div id="listForm">
     <table class = "productList">
         <tr id = "titles">
             <th>Code</th>
@@ -38,41 +38,54 @@
         </tr>
 
         <c:forEach var="product" items="${productList}">
-            <tr id = "rows">
-                <td>${product.code}</td>
-                <td>${product.name}</td>
-                <td>${product.capacity}</td>
-                <td>${product.capacityType}</td>
-                <td>${product.price}</td>
-                <td><a id="${product.id}" href="#">Link</a></td>
+            <tr id = "rows" prId=${product.id}>
+                <td tdId="code">${product.code}</td>
+                <td tdId="name">${product.name}</td>
+                <td tdId="capacity">${product.capacity}</td>
+                <td tdId="capacityType">${product.capacityType}</td>
+                <td tdId="price">${product.price}</td>
+                <td><a id="${product.id}" onClick="getById(this)">Update</a></td>
             </tr>
         </c:forEach>
     </table>
-  </form>
+  </div>
 </div>
 
 <div id = "addProd" class="container" style = "display: none;">
-  <form id="contact" action="/createProduct" method="post">
+  <form formId = "formId" id="contact" action="/createProduct" method="post">
       <input type="text" placeholder="Code"  name="code"/>
       <input type="text" placeholder="Name" name="name"/>
       <input type="text" placeholder="CapacityType"  name="capacityType"/>
       <input type="text" placeholder="Capacity" name="capacity"/>
       <input type="text" placeholder="Price" name="price"/>
-      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Create Product</button>
+      <button  btnUpdate = "btnUpdate"  name="submit" type="submit" id="contact-submit" data-submit="...Sending">Create Product</button>
   </form>
   <button class="button" onClick="goBack()">Go back</button>
 
 </div>
 
 <script>
+function goBack() {
+  document.getElementById("prods").style.display="block";
+   document.getElementById("addProd").style.display="none";
+}
+
 function showCreateForm() {
  document.getElementById("prods").style.display="none";
  document.getElementById("addProd").style.display="block";
 }
 
-function goBack() {
-  document.getElementById("prods").style.display="block";
-   document.getElementById("addProd").style.display="none";
+function getById(elem) {
+ document.getElementById("prods").style.display="none";
+ document.getElementById("addProd").style.display="block";
+ var productRow = elem.parentNode.parentNode;
+ document.querySelector("[name=code]").value=productRow.children[0].innerText;
+ document.querySelector("[name=name]").value=productRow.children[1].innerText;
+ document.querySelector("[name=capacity]").value=productRow.children[2].innerText;
+ document.querySelector("[name=capacityType]").value=productRow.children[3].innerText;
+ document.querySelector("[name=price]").value=productRow.children[4].innerText;
+ document.querySelector("[btnUpdate=btnUpdate]").innerText = "Update Product";
+ document.querySelector("[formId=formId]").action = "/updateProduct?id="+elem.id;
 }
 </script>
 </body>

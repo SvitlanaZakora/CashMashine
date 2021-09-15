@@ -67,6 +67,15 @@
         <url-pattern>/createProduct</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>updateProduct</servlet-name>
+        <servlet-class>servlet.UpdateProductServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updateProduct</servlet-name>
+        <url-pattern>/updateProduct</url-pattern>
+    </servlet-mapping>
+
 
     <filter>
         <filter-name>HomePageFilter</filter-name>
