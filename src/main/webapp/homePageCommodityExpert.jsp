@@ -44,6 +44,7 @@
                 <td>${product.capacity}</td>
                 <td>${product.capacityType}</td>
                 <td>${product.price}</td>
+                <td><a id="${product.id}" href="#">Link</a></td>
             </tr>
         </c:forEach>
     </table>
@@ -57,14 +58,21 @@
       <input type="text" placeholder="CapacityType"  name="capacityType"/>
       <input type="text" placeholder="Capacity" name="capacity"/>
       <input type="text" placeholder="Price" name="price"/>
-      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Create Product</button>
   </form>
+  <button class="button" onClick="goBack()">Go back</button>
+
 </div>
 
 <script>
 function showCreateForm() {
  document.getElementById("prods").style.display="none";
  document.getElementById("addProd").style.display="block";
+}
+
+function goBack() {
+  document.getElementById("prods").style.display="block";
+   document.getElementById("addProd").style.display="none";
 }
 </script>
 </body>

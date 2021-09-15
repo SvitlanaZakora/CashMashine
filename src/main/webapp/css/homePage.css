@@ -40,7 +40,7 @@ body {
 #contact {
   background: #F9F9F9;
   padding: 25px;
-  margin: 150px 0;
+  margin: 150px 0 0 0;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
@@ -163,10 +163,6 @@ fieldset {
   color: #888;
 }
 
-table.productList td{
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
 
 table.productList tr#titles{
     border: 1px solid green;
@@ -188,6 +184,19 @@ table.productList td, th {
     color: #054E00;
 }
 
+th, td {
+  padding: 15px;
+}
+
+tr#rows {
+  background-color: #ddfada;
+}
+
+table.productList {
+font: 400 16px "Roboto", Helvetica, Arial, sans-serif;
+}
+
+
 #listForm {
 width:100%;
 align: center;
@@ -196,5 +205,27 @@ display: inline-block;
   padding: 25px;
   margin: 50px auto;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+
+
+
+.button {
+  display: block;
+  margin: auto;
+  margin-top: 20px;
+  align: center;
+  line-height: 50px;
+  height: 50px;
+  text-align: center;
+  width: 250px;
+  cursor: pointer;
+  transition-duration: 0.4s;
+  font: 400 16px "Roboto", Helvetica, Arial, sans-serif;
+}
+
+.button:hover {
+  background-color: #4CAF50; /* Green */
+  color: white;
 }
 
