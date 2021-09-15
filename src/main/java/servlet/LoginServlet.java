@@ -1,5 +1,6 @@
 package servlet;
 
+import entity.Role;
 import entity.User;
 import service.UserService;
 import service.impl.UserServiceImpl;
@@ -23,7 +24,7 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("login.jsp").forward(req, resp);
+        req.getRequestDispatcher("registration.jsp").forward(req, resp);
     }
 
     @Override
@@ -34,9 +35,19 @@ public class LoginServlet extends HttpServlet {
             String pass = req.getParameter("pass");
             if (pass.equals(user.getPass())) {
                 req.getSession().setAttribute("user", user);
-                req.getRequestDispatcher("cabinet.jsp").forward(req, resp);
-            }
-            req.getRequestDispatcher("login.jsp").forward(req, resp);
+                switch (user.getRole()) {
+                    case CASHIER:
+                        resp.sendRedirect(req.getContextPath()+"/homePageCashier");
+                        break;
+                    case SENIOR_CASHIER:
+                        resp.sendRedirect(req.getContextPath()+"/homePageSeniorCashier");
+                        break;
+                    case COMMODITY_EXPERT:
+                        resp.sendRedirect(req.getContextPath()+"/homePageCommodityExpert");
+                        break;
+                }
+            }else
+            req.getRequestDispatcher("registration.jsp").forward(req, resp);
         }
     }
 }

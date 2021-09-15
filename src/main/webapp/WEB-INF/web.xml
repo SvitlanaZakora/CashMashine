@@ -28,4 +28,53 @@
         <servlet-name>login</servlet-name>
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>homePageCashier</servlet-name>
+        <servlet-class>servlet.HomePageCashierServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>homePageCashier</servlet-name>
+        <url-pattern>/homePageCashier</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>createReceipt</servlet-name>
+        <servlet-class>servlet.CreateReceiptServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>createReceipt</servlet-name>
+        <url-pattern>/createReceipt</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>homePageCommodityExpert</servlet-name>
+        <servlet-class>servlet.HomePageCommodityExpertServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>homePageCommodityExpert</servlet-name>
+        <url-pattern>/homePageCommodityExpert</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>createProduct</servlet-name>
+        <servlet-class>servlet.CreateProductServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>createProduct</servlet-name>
+        <url-pattern>/createProduct</url-pattern>
+    </servlet-mapping>
+
+
+    <filter>
+        <filter-name>HomePageFilter</filter-name>
+        <filter-class>filter.LoginFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>HomePageFilter</filter-name>
+        <url-pattern>/homePageCashier</url-pattern>
+    </filter-mapping>
 </web-app>

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Objects;
 
-@WebServlet("/RegistrationServlet")
+@WebServlet()
 public class RegistrationServlet extends HttpServlet {
 
     private static UserService service;
@@ -37,7 +37,7 @@ public class RegistrationServlet extends HttpServlet {
             User user = new User(login,pass,role);
             service.createUser(user);
 
-            req.getRequestDispatcher("login.jsp").forward(req, resp);
+            req.getRequestDispatcher("registration.jsp").forward(req, resp);
 
 
 

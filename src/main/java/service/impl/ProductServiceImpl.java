@@ -44,4 +44,9 @@ public class ProductServiceImpl implements ProductService {
     public Product getProductById(int productId) {
         return productDao.getProductById(productId);
     }
+
+    @Override
+    public Product getProductByCode(String code) {
+        return productDao.getProductByCode(code);
+    }
 }
