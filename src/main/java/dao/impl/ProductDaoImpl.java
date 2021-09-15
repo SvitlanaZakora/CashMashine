@@ -19,9 +19,10 @@ public class ProductDaoImpl implements ProductDao {
         try (Connection connection = MySQLConnector.getConnection()){
             preparedStatement = connection.prepareStatement(SQLConstants.INSERT_PRODUCT, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, product.getName());
-            preparedStatement.setString(2, product.getCapacityType());
-            preparedStatement.setDouble(3,product.getCapacity());
-            preparedStatement.setDouble(4,product.getPrice());
+            preparedStatement.setString(2, product.getCode());
+            preparedStatement.setString(3, product.getCapacityType());
+            preparedStatement.setDouble(4,product.getCapacity());
+            preparedStatement.setDouble(5,product.getPrice());
             preparedStatement.executeUpdate();
             resultSet = preparedStatement.getGeneratedKeys();
             if (resultSet != null && resultSet.next()){

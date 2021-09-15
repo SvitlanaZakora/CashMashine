@@ -34,7 +34,7 @@ public class CreateProductServlet extends HttpServlet {
             double capacity = Double.parseDouble(req.getParameter("capacity"));
             double price = Double.parseDouble(req.getParameter("price"));
 
-            Product product = new Product(name,capacityType,code,capacity,price);
+            Product product = new Product(code,name,capacityType,capacity,price);
             productService.createProduct(product);
         }
         resp.sendRedirect("/homePageCommodityExpert");

@@ -57,7 +57,7 @@
       <input type="text" placeholder="CapacityType"  name="capacityType"/>
       <input type="text" placeholder="Capacity" name="capacity"/>
       <input type="text" placeholder="Price" name="price"/>
-      <button>Create Product</button>
+      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
   </form>
 </div>
 
