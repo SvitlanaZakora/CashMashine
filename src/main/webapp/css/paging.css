@@ -1,0 +1,27 @@
+.paging-nav{
+border:2px;
+    text-align: right;
+    padding-top: 2px;
+    margin-top: 15;
+    font-family: Arial, sans-serif;
+}
+
+.paging-nav a {
+    margin: auto 1px;
+    text-decoration: none;
+    display: inline-block;
+    padding: 1px 7px;
+    background: #4CAF50;
+    color: white;
+    border-radius: 3px;
+}
+
+.paging-nav a:hover:not(.active) {
+background-color: #ddd;
+}
+
+.paging-nav a:active {
+  background-color: black;
+  color: white;
+  border: 1px solid #4CAF50;
+}

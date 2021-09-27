@@ -8,6 +8,8 @@ import entity.Product;
 import entity.Receipt;
 import service.ReceiptService;
 
+import java.util.List;
+
 public class ReceiptServiceImpl implements ReceiptService {
 
     ReceiptDao receiptDao;
@@ -39,21 +41,42 @@ public class ReceiptServiceImpl implements ReceiptService {
 
     @Override
     public boolean deleteProduct(int productId, int receiptId) {
-        return false;
+        return receiptDao.deleteProduct(productId,receiptId);
     }
 
     @Override
     public boolean deleteById(int id) {
-        return false;
+        return receiptDao.deleteById(id);
     }
 
     @Override
     public Receipt getById(int receiptId) {
-        return null;
+        return receiptDao.getById(receiptId);
     }
 
     @Override
+    public Receipt getByIdWithOwner(int receiptId) {
+        return receiptDao.getByIdWithOwner(receiptId);
+    }
+
+    @Override
+    public List<Receipt> getPagingReceipts(int page, int size) {
+        return receiptDao.getPagingReceipts(page,size);
+    }
+
+    @Override
+    public int getReceiptsCount() {
+        return receiptDao.getReceiptsCount();
+    }
+
+    @Override
+    public List<Receipt> getAllReceiptsByUserIdAndActive(int userId, boolean active) {
+        return receiptDao.getAllReceiptsByUserIdAndActive(userId, active);
+    }
+
+
+    @Override
     public boolean close(int receiptId) {
-        return false;
+        return receiptDao.close(receiptId);
     }
 }

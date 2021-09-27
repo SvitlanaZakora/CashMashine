@@ -16,9 +16,13 @@ import java.io.IOException;
 @WebFilter()
 public class LoginFilter implements Filter {
 
+    private static final String CASHIER_PAGE = "/homePageCashier";
+    private static final String SENIOR_CASHIER_PAGE = "/homePageSeniorCashier";
+    private static final String COMMODITY_EXPERT_PAGE = "/homePageCommodityExpert";
+
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig){
 
     }
 
@@ -27,11 +31,21 @@ public class LoginFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         String loginURI = request.getContextPath() + "/login";
+        String requestURI = request.getRequestURI();
         User user  = (User) request.getSession().getAttribute("user");
 
-        if (user != null){
+        if(user==null){
+            response.sendRedirect(loginURI);
+            return;
+        }
+
+        if(Role.CASHIER.equals(user.getRole()) && CASHIER_PAGE.equals(requestURI)){
             filterChain.doFilter(request,response);
-        }else {
+        } else if(Role.SENIOR_CASHIER.equals(user.getRole()) && SENIOR_CASHIER_PAGE.equals(requestURI)){
+            filterChain.doFilter(request,response);
+        } else if (Role.COMMODITY_EXPERT.equals(user.getRole()) && COMMODITY_EXPERT_PAGE.equals(requestURI)){
+            filterChain.doFilter(request,response);
+        } else {
             response.sendRedirect(loginURI);
         }
 

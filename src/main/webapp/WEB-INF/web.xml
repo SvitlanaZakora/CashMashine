@@ -1,16 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app>
-    <!--<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee"-->
-    <!--         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"-->
-    <!--         version="3.1">-->
-    <display-name>Archetype Created Web Application</display-name>
-    <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
-    </welcome-file-list>
-<!--    <servlet>-->
-<!--        <servlet-name>UserServlet</servlet-name>-->
-<!--        <servlet-class>servlet.UserServlet</servlet-class>-->
-<!--    </servlet>-->
     <servlet>
         <servlet-name>registration</servlet-name>
         <servlet-class>servlet.RegistrationServlet</servlet-class>
@@ -76,6 +65,90 @@
         <url-pattern>/updateProduct</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>addProductToReceipt</servlet-name>
+        <servlet-class>servlet.AddProductToReceiptServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addProductToReceipt</servlet-name>
+        <url-pattern>/addProductToReceipt</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>closeReceipt</servlet-name>
+        <servlet-class>servlet.CloseReceiptServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>closeReceipt</servlet-name>
+        <url-pattern>/closeReceipt</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>logOut</servlet-name>
+        <servlet-class>servlet.LogOutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>logOut</servlet-name>
+        <url-pattern>/logOut</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>language</servlet-name>
+        <servlet-class>servlet.LanguageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>language</servlet-name>
+        <url-pattern>/changeLanguage</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>search</servlet-name>
+        <servlet-class>servlet.SearchServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>search</servlet-name>
+        <url-pattern>/search</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>homePageSeniorCashier</servlet-name>
+        <servlet-class>servlet.HomePageSeniorCashierServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>homePageSeniorCashier</servlet-name>
+        <url-pattern>/homePageSeniorCashier</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>updateReceipt</servlet-name>
+        <servlet-class>servlet.UpdateReceiptServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updateReceipt</servlet-name>
+        <url-pattern>/updateReceipt</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>deleteProductFromReceipt</servlet-name>
+        <servlet-class>servlet.DeleteProductFromReceiptServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deleteProductFromReceipt</servlet-name>
+        <url-pattern>/deleteProductFromReceipt</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>deleteReceipt</servlet-name>
+        <servlet-class>servlet.DeleteReceiptServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deleteReceipt</servlet-name>
+        <url-pattern>/deleteReceipt</url-pattern>
+    </servlet-mapping>
+
 
     <filter>
         <filter-name>HomePageFilter</filter-name>
@@ -86,4 +159,15 @@
         <filter-name>HomePageFilter</filter-name>
         <url-pattern>/homePageCashier</url-pattern>
     </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>HomePageFilter</filter-name>
+        <url-pattern>/homePageCommodityExpert</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>HomePageFilter</filter-name>
+        <url-pattern>/homePageSeniorCashier</url-pattern>
+    </filter-mapping>
+
 </web-app>

@@ -229,3 +229,129 @@ display: inline-block;
   color: white;
 }
 
+
+
+.container-search{
+      display: block;
+      margin: auto;
+      margin-top: -10px;
+      margin-bottom: 10px;
+      overflow: hidden;
+      width: 300px;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+
+    .container-search input#search{
+      width: 300px;
+      height: 30px;
+      background: #66b266;
+      border: none;
+      font-size: 10pt;
+      float: left;
+      color: green;
+      padding-left: 15px;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+    }
+
+     .container-search input#search::-webkit-input-placeholder {
+           color: #004000;
+        }
+
+    .container-search button.icon{
+          -webkit-border-top-right-radius: 5px;
+          -webkit-border-bottom-right-radius: 5px;
+          -moz-border-radius-topright: 5px;
+          -moz-border-radius-bottomright: 5px;
+          border-top-right-radius: 5px;
+          border-bottom-right-radius: 5px;
+
+          border: none;
+          background: #006600;
+          height: 30px;
+          width: 50px;
+          color: #7fbf7f;
+          opacity: 0;
+          font-size: 10pt;
+
+          -webkit-transition: all .55s ease;
+          -moz-transition: all .55s ease;
+          -ms-transition: all .55s ease;
+          -o-transition: all .55s ease;
+          transition: all .55s ease;
+        }
+
+        .container-search:hover button.icon, .container-search:active button.icon, .container-search:focus button.icon{
+                outline: none;
+                opacity: 1;
+                margin-left: -50px;
+              }
+
+              .container-search:hover button.icon:hover{
+                background: #e5f2e5;
+              }
+
+
+    #contact input.receiptProd {
+    display: inline;
+    width: 250px;
+    margin:auto;
+    margin-bottom: 10px;
+    margin-left:15px;
+    }
+
+    div#receiptDiv form#contact h4{
+      margin: 0;
+    }
+
+    table.receiptProducts tr#titlesReceipt{
+      font-size:10px;
+      margin: auto;
+    }
+
+    table.receiptProducts tr#rowsReceipt{
+      font-size:13px;
+      padding: 0px;
+      margin: auto;
+    }
+
+    table.receiptProducts tr#rowsReceipt td{
+      padding-top: 5px;
+      text-align: center;
+    }
+
+    table.receiptProducts{
+      width: 100%;
+    }
+
+    span#val {
+     display:block;
+     margin-left:430px;
+     margin-bottom: 10px;
+     font: bold;
+    }
+
+
+    form.closeReceipt{
+        margin-top: 10px;
+        margin-bottom: 30px;
+        }
+
+    form.closeReceipt button[type="submit"] {
+      cursor: pointer;
+      width: 100%;
+      border: none;
+      background: #FFF ;
+      color: #4CAF50;
+      margin: 0 0 5px;
+      padding: 10px;
+      font-size: 15px;
+      transition-duration: 0.4s;
+    }
+
+    form.closeReceipt button[type="submit"]:hover {
+      background: #ABF3AC;
+    }
+

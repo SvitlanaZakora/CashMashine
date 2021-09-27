@@ -15,6 +15,7 @@ public class Receipt {
     private int id;
     private LocalDateTime creationDateTime;
     private int ownerId;
+    private String ownerName;
     private List<Product> products;
     private boolean active;
 

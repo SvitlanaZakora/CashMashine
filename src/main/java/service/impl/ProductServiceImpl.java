@@ -31,6 +31,37 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public List<Product> getProductsByReceiptId(int receiptId) {
+        return productDao.getProductsByReceiptId(receiptId);
+    }
+
+    @Override
+    public int getProductsCount() {
+        return productDao.getProductsCount();
+    }
+
+    @Override
+    public int getProductsCountByName(String name) {
+        return productDao.getProductsCountByName(name);
+    }
+
+    @Override
+    public int getProductsCountByCode(String code) {
+        return productDao.getProductsCountByCode(code);
+    }
+
+    @Override
+    public List<Product> getPagingProducts(int page, int size) {
+        return productDao.getPagingProducts(page, size);
+    }
+
+    @Override
+    public List<Product> getPagingSearchProductsByCode(int page, int size, String code) {return productDao.getPagingSearchProductsByCode(page,size,code);}
+
+    @Override
+    public List<Product> getPagingSearchProductsByName(int page, int size, String name) {return productDao.getPagingSearchProductsByName(page,size,name);}
+
+    @Override
     public Product updateProduct(Product product) {
         return productDao.updateProduct(product);
     }
