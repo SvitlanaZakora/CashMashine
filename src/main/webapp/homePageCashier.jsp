@@ -19,7 +19,10 @@
 <body>
 
 <header>
+  <form class = "left_header">
     <a href="#default" class="welcome"><fmt:message key="cash.welcome" />, ${user.login}</a>
+    <a href="#default" class="welcome"><fmt:message key="cash.yourRole" /> ${user.role.name} </a>
+  </form>
     <div class = "errorLabel" >
     <p>${error}</p>
     </div>

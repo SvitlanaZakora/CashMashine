@@ -1,6 +1,7 @@
 package filter;
 
 import entity.Role;
+import entity.RoleShortNames;
 import entity.User;
 import service.UserService;
 import service.impl.UserServiceImpl;
@@ -39,11 +40,11 @@ public class LoginFilter implements Filter {
             return;
         }
 
-        if(Role.CASHIER.equals(user.getRole()) && CASHIER_PAGE.equals(requestURI)){
+        if(RoleShortNames.C.name().equals(user.getRole().getShort_name()) && CASHIER_PAGE.equals(requestURI)){
             filterChain.doFilter(request,response);
-        } else if(Role.SENIOR_CASHIER.equals(user.getRole()) && SENIOR_CASHIER_PAGE.equals(requestURI)){
+        } else if(RoleShortNames.SC.name().equals(user.getRole().getShort_name()) && SENIOR_CASHIER_PAGE.equals(requestURI)){
             filterChain.doFilter(request,response);
-        } else if (Role.COMMODITY_EXPERT.equals(user.getRole()) && COMMODITY_EXPERT_PAGE.equals(requestURI)){
+        } else if (RoleShortNames.CE.name().equals(user.getRole().getShort_name()) && COMMODITY_EXPERT_PAGE.equals(requestURI)){
             filterChain.doFilter(request,response);
         } else {
             response.sendRedirect(loginURI);

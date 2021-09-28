@@ -20,7 +20,7 @@ public class UserDaoImpl implements UserDao {
             preparedStatement = connection.prepareStatement(SQLConstants.INSERT_USER, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1,user.getLogin());
             preparedStatement.setString(2,user.getPass());
-            preparedStatement.setString(3,user.getRole().toString());
+            preparedStatement.setInt(3,user.getRole().getId());
             preparedStatement.executeUpdate();
             resultSet = preparedStatement.getGeneratedKeys();
             if (resultSet != null && resultSet.next()){
@@ -48,75 +48,81 @@ public class UserDaoImpl implements UserDao {
         return user;
     }
 
-    @Override
-    public List<User> getAllUsers() {
-        List<User> users = new ArrayList<>();
-        try (Connection connection = MySQLConnector.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SQLConstants.SELECT_ALL_FROM_USER);
-             ResultSet resultSet = preparedStatement.executeQuery()
-        ) {
-            while (resultSet.next()){
-                users.add(mapUser(resultSet));
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return users;
-    }
+
+
 
     @Override
-    public User updateUser(User user) {
-        PreparedStatement preparedStatement = null;
-        try (Connection connection = MySQLConnector.getConnection()){
-            preparedStatement = connection.prepareStatement(SQLConstants.UPDATE_USER);
-            preparedStatement.setString(1, user.getLogin());
-            preparedStatement.setString(2,user.getPass());
-            preparedStatement.setString(3,user.getRole().toString());
-            preparedStatement.setInt(4,user.getId());
-            preparedStatement.executeUpdate();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }finally {
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } catch (SQLException throwables) {
-                System.out.println(throwables.getMessage());
-            }
-        }
-        return user;
-    }
-
-    @Override
-    public boolean deleteUser(int userId) {
-        PreparedStatement preparedStatement = null;
-        try (Connection connection = MySQLConnector.getConnection()){
-            preparedStatement = connection.prepareStatement(SQLConstants.DELETE_USER);
-            preparedStatement.setInt(1,userId);
-            preparedStatement.executeUpdate();
-            return true;
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }finally {
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } catch (SQLException throwables) {
-                System.out.println(throwables.getMessage());
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public User getUserById(int userId) {
+    public User getUserByLogin(String login, String lang){
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try (Connection connection = MySQLConnector.getConnection()){
-            preparedStatement = connection.prepareStatement(SQLConstants.SELECT_USER_BY_ID);
+            preparedStatement = connection.prepareStatement(SQLConstants.SELECT_USER_BY_LOGIN_WITH_LANG);
+            preparedStatement.setString(1,login);
+            preparedStatement.setString(2,lang);
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) return mapUser(resultSet);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }finally {
+            if (preparedStatement != null) {
+                try {
+                    preparedStatement.close();
+                } catch (SQLException throwables) {
+                    System.out.println(throwables.getMessage());
+                }
+            }
+                if (resultSet != null) {
+                    try {
+                        resultSet.close();
+                    } catch (SQLException throwables) {
+                        System.out.println(throwables.getMessage());
+                    }
+            }
+        }
+        return null;
+    }
+
+    public List<Role> getAllRolesByLang(String lang){
+        List<Role> roles = new ArrayList<>();
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try (Connection connection = MySQLConnector.getConnection()){
+            preparedStatement = connection.prepareStatement(SQLConstants.SELECT_ALL_ROLES_BY_LANG);
+            preparedStatement.setString(1,lang);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                roles.add(mapRole(resultSet));
+            }
+            return roles;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }finally {
+            if (preparedStatement != null) {
+                try {
+                    preparedStatement.close();
+                } catch (SQLException throwables) {
+                    System.out.println(throwables.getMessage());
+                }
+            }
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException throwables) {
+                    System.out.println(throwables.getMessage());
+                }
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public User getUserById(int userId, String lang) {
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try (Connection connection = MySQLConnector.getConnection()){
+            preparedStatement = connection.prepareStatement(SQLConstants.SELECT_USER_BY_ID_WITH_LANG);
             preparedStatement.setInt(1,userId);
+            preparedStatement.setString(2,lang);
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) return mapUser(resultSet);
         } catch (Exception e) {
@@ -141,39 +147,13 @@ public class UserDaoImpl implements UserDao {
     }
 
 
-    @Override
-    public User getUserByLogin(String login){
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
-        try (Connection connection = MySQLConnector.getConnection()){
-            preparedStatement = connection.prepareStatement(SQLConstants.SELECT_USER_BY_LOGIN);
-            preparedStatement.setString(1,login);
-            resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) return mapUser(resultSet);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }finally {
-            if (preparedStatement != null) {
-                try {
-                    preparedStatement.close();
-                } catch (SQLException throwables) {
-                    System.out.println(throwables.getMessage());
-                }
-            }
-                if (resultSet != null) {
-                    try {
-                        resultSet.close();
-                    } catch (SQLException throwables) {
-                        System.out.println(throwables.getMessage());
-                    }
-            }
-        }
-        return null;
+    private Role mapRole(ResultSet result) throws SQLException{
+        Role role = new Role();
+        role.setId(result.getInt(SQLConstants.FIELD_ROLE_ID));
+        role.setShort_name(result.getString(SQLConstants.FIELD_ROLE_SHORT_NAME));
+        role.setName(result.getString(SQLConstants.FIELD_ROLE_NAME));
+        return role;
     }
-
-
-
-
 
 
 
@@ -182,7 +162,10 @@ public class UserDaoImpl implements UserDao {
         user.setId(result.getInt(SQLConstants.FIELD_USER_ID));
         user.setLogin(result.getString(SQLConstants.FIELD_USER_LOGIN));
         user.setPass(result.getString(SQLConstants.FIELD_USER_PASS));
-        user.setRole(Role.valueOf(result.getString(SQLConstants.FIELD_USER_ROLE)));
+        user.setRole(new Role());
+        user.getRole().setId(result.getInt(SQLConstants.FIELD_ROLE_ID));
+        user.getRole().setShort_name(result.getString(SQLConstants.FIELD_ROLE_SHORT_NAME));
+        user.getRole().setName(result.getString(SQLConstants.FIELD_ROLE_NAME));
         return user;
     }
 }

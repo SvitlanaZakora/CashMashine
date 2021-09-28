@@ -18,7 +18,15 @@
 <body>
 
 <header>
+  <form class = "left_header">
     <a href="#default" class="welcome"><fmt:message key="senior.welcome" />, ${user.login}</a>
+    <a href="#default" class="welcome"><fmt:message key="senior.yourRole" /> ${user.role.name} </a>
+  </form>
+
+   <div class = "errorLabel" >
+      <p>${error}</p>
+   </div>
+
     <div class="header-right">
     <form action="/changeLanguage" method="get">
       <input hidden="true" name="lang" value="en">

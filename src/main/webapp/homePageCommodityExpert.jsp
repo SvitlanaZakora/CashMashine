@@ -18,11 +18,15 @@
 <body>
 
 <header>
+  <form class = "left_header">
     <a href="#default" class="welcome"><fmt:message key="comm.welcome" />, ${user.login}</a>
+    <a href="#default" class="welcome"><fmt:message key="comm.yourRole" /> ${user.role.name} </a>
+  </form>
+
 
     <div class = "errorLabel" >
         <p>${error}</p>
-        </div>
+     </div>
 
     <div class="header-right">
 
@@ -96,7 +100,7 @@
   <form formId = "formId" id="contact" action="/createProduct" method="post">
       <input type="text" placeholder=<fmt:message key="comm.code" />  name="code"/>
       <input type="text" placeholder=<fmt:message key="comm.name" /> name="name"/>
-      <input type="text" placeholder=<fmt:message key="comm.capType" />  name="capacityType"/>
+      <input type="text" placeholder="<fmt:message key="comm.capType" />"  name="capacityType"/>
       <input type="text" placeholder=<fmt:message key="comm.capacity" /> name="capacity"/>
       <input type="text" placeholder=<fmt:message key="comm.price" /> name="price"/>
       <button  btnUpdate = "btnUpdate"  name="submit" type="submit" id="contact-submit" data-submit="...Sending"><fmt:message key="comm.create" /></button>

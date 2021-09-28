@@ -2,6 +2,7 @@ package service.impl;
 
 import dao.UserDao;
 import dao.impl.UserDaoImpl;
+import entity.Role;
 import entity.User;
 import service.UserService;
 
@@ -21,27 +22,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserByLogin(String login) {
-        return userDao.getUserByLogin(login);
+    public User getUserByLogin(String login, String lang) {
+        return userDao.getUserByLogin(login,lang);
     }
 
     @Override
-    public List<User> getAllUsers() {
-        return userDao.getAllUsers();
+    public List<Role> getAllRolesByLang(String lang) {
+        return userDao.getAllRolesByLang(lang);
     }
 
     @Override
-    public User updateUser(User user) {
-        return userDao.updateUser(user);
-    }
-
-    @Override
-    public boolean deleteUser(int userId) {
-        return userDao.deleteUser(userId);
-    }
-
-    @Override
-    public User getUserById(int userId) {
-        return null;
+    public User getUserById(int userId, String lang) {
+        return userDao.getUserById(userId,lang);
     }
 }

@@ -2,16 +2,19 @@ package util;
 
 public class SQLConstants {
 
-    public static final String INSERT_USER = "insert into user (login,pass,role) values (?,?,?)";
-    public static final String SELECT_USER_BY_LOGIN = "select * from user where login = ?";
-    public static final String SELECT_ALL_FROM_USER = "select * from user";
+    public static final String INSERT_USER = "insert into user (login,pass,role_id) values (?,?,?)";
+    public static final String SELECT_USER_BY_LOGIN_WITH_LANG = "select u.*, r.short_name, rl.role_name from user u join role r on u.role_id = r.id join role_language rl on r.id = rl.role_id join language l on rl.language_id = l.id where u.login = ? and l.short_name = ?";
     public static final String FIELD_USER_ID = "id";
     public static final String FIELD_USER_LOGIN = "login";
-    public static final String FIELD_USER_ROLE = "role";
     public static final String FIELD_USER_PASS = "pass";
-    public static final String UPDATE_USER = "UPDATE user SET login = ?, pass = ?, role = ? where id = ?";
-    public static final String DELETE_USER = "delete from user where user.id = ?";
-    public static final String SELECT_USER_BY_ID = "select * from user where id = ?";
+    public static final String SELECT_USER_BY_ID_WITH_LANG = "select u.*, r.short_name, rl.role_name from user u join role r on u.role_id = r.id join role_language rl on r.id = rl.role_id join language l on rl.language_id = l.id where u.id = ?  and l.short_name = ?";
+
+    public static final String FIELD_ROLE_ID = "role_id";
+    public static final String FIELD_ROLE_SHORT_NAME = "short_name";
+    public static final String FIELD_ROLE_NAME = "role_name";
+
+    public static final String SELECT_ALL_ROLES_BY_LANG = "select rl.role_id, rl.role_name, r.short_name from role_language rl join language l on rl.language_id = l.id join role r on r.id = rl.role_id where l.short_name = ?";
+    public static final String SELECT_ROLE_BY_NAME = "select r.* from role_language rl join role r on rl.role_id = r.id where role_name = ?";
 
     public static final String INSERT_PRODUCT = "insert into product (name,code,capacityType,capacity,price) values (?,?,?,?,?)";
     public static final String SELECT_PRODUCT_BY_NAME = "select * from product where name = ?";

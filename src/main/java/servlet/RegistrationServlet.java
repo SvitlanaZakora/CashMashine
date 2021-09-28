@@ -30,11 +30,12 @@ public class RegistrationServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String login = req.getParameter("login");
-        if (Objects.isNull(service.getUserByLogin(login))){
+        String lang = String.valueOf(req.getSession().getAttribute("lang"));
+        if (Objects.isNull(service.getUserByLogin(login,lang))){
             String pass = req.getParameter("pass");
-            Role role = Role.valueOf(req.getParameter("role"));
+            int roleId = Integer.parseInt(req.getParameter("roleId"));
 
-            User user = new User(login,pass,role);
+            User user = new User(login,pass,Role.builder().id(roleId).build());   //builder pattern (optional params)
             service.createUser(user);
 
             req.getRequestDispatcher("registration.jsp").forward(req, resp);

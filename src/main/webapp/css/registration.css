@@ -69,6 +69,21 @@
 .form .register-form {
   display: none;
 }
+form.lang button{
+  background-color: #4CAF50;
+  float: right;
+  display: inline;
+  color: white;
+  width: 100px;
+  height: 40px;
+
+}
+
+form.lang {
+  float: right;
+
+}
+
 .container {
   position: relative;
   z-index: 1;

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page isELIgnored="false" %>
 <fmt:setLocale value="${lang}" />
@@ -11,15 +12,19 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
+      <div class = "errorLabel" >
+        <p>${error}</p>
+      </div>
+
     <div class="login-page">
       <div class="form">
         <form class="register-form" action="/registration" method="post">
           <input type="text" placeholder=<fmt:message key="login.username" />  name="login"/>
           <input type="password" placeholder=<fmt:message key="login.password" /> name="pass"/>
-          <select name="role" required>
-              <option value="CASHIER"><fmt:message key="reg.C" /></option>
-              <option value="SENIOR_CASHIER"><fmt:message key="reg.S" /></option>
-              <option value="COMMODITY_EXPERT"><fmt:message key="reg.E" /></option>
+          <select name="roleId" required>
+            <c:forEach var="role" items="${roleList}">
+                <option value=${role.id} >${role.name}</option>
+            </c:forEach>
              </select>
           <button><fmt:message key="reg.create" /></button>
           <p class="message"><fmt:message key="reg.mess" /> <a href="#"><fmt:message key="reg.href" /></a></p>
@@ -32,6 +37,14 @@
         </form>
       </div>
     </div>
+    <form class="lang" action="/changeLanguage" method="get">
+          <input hidden="true" name="lang" value="en">
+          <button type="submit" class="changeLanguage" ><fmt:message key="cash.EN" /></button>
+        </form>
+        <form class="lang" action="/changeLanguage" method="get">
+          <input hidden="true" name="lang" value="ua">
+          <button type="submit" class="changeLanguage" ><fmt:message key="cash.UA" /></button>
+        </form>
     <script src="js/registration.js"></script>
 </body>
 </html>

@@ -7,10 +7,8 @@ import java.util.List;
 
 public interface UserDao {
     public User createUser(User user);
-    public User getUserByLogin(String login);
-    public List<User> getAllUsers();
-    public User updateUser(User user);
-    public boolean deleteUser(int userId);
-    public User getUserById(int userId);
+    public User getUserByLogin(String login, String lang);
+    public List<Role> getAllRolesByLang(String lang);
+    public User getUserById(int userId, String lang);
 
 }

@@ -29,6 +29,7 @@ header form {
 }
 
 header a.welcome {
+  display: block;
   font-size: 25px;
   font-weight: bold;
 }
@@ -64,6 +65,16 @@ header button {
   font-size: 15px;
   color: red;
   font-weight: bold;
+}
+
+form.left_header a{
+font-size: 25px;
+display: block;
+width: 100%;
+}
+form.left_header {
+width:30%;
+padding-left:0px
 }
 
 @media screen and (max-width: 500px) {
