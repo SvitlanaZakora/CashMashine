@@ -8,6 +8,7 @@ import entity.Product;
 import entity.Receipt;
 import service.ReceiptService;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class ReceiptServiceImpl implements ReceiptService {
@@ -76,7 +77,12 @@ public class ReceiptServiceImpl implements ReceiptService {
 
 
     @Override
-    public boolean close(int receiptId) {
-        return receiptDao.close(receiptId);
+    public boolean close(int receiptId, double total) {
+        return receiptDao.close(receiptId,total);
+    }
+
+    @Override
+    public List<Receipt> getAllClosedReceiptsBetweenDate(LocalDateTime localDateTime1, LocalDateTime localDateTime2) {
+        return receiptDao.getAllClosedReceiptsBetweenDate(localDateTime1,localDateTime2);
     }
 }

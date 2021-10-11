@@ -19,17 +19,20 @@ public class DeleteProductFromReceiptServlet extends HttpServlet {
 
     ReceiptService receiptService = new ReceiptServiceImpl();
 
+    /**
+     *  Deleting product from receipt by id of product and receipt.
+     *
+     * @param req HttpServletRequest
+     * @param resp HttpServletResponse
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int productId = Integer.parseInt(req.getParameter("prodId"));
         int receiptId = Integer.parseInt(req.getParameter("recId"));
         receiptService.deleteProduct(productId, receiptId);
         resp.sendRedirect("/updateReceipt?recId="+ receiptId);
-
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
     }
 }

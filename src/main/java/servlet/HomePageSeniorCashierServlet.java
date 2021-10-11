@@ -16,6 +16,14 @@ public class HomePageSeniorCashierServlet extends HttpServlet {
     ReceiptService receiptService = new ReceiptServiceImpl();
 
 
+    /**
+     * Demonstration all receipts.
+     *
+     * @param req HttpServletRequest
+     * @param resp HttpServletResponse
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if (req.getSession().getAttribute("receipt") == null){

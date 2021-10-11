@@ -15,6 +15,14 @@ import java.io.IOException;
 public class DeleteReceiptServlet extends HttpServlet {
     ReceiptService receiptService = new ReceiptServiceImpl();
 
+    /**
+     * Deleting receipt if exists by id of receipt.
+     *
+     * @param req HttpServletRequest
+     * @param resp HttpServletResponse
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int receiptId = Integer.parseInt(req.getParameter("recId"));
@@ -22,10 +30,5 @@ public class DeleteReceiptServlet extends HttpServlet {
         req.getSession().removeAttribute("receipt");
         req.getSession().removeAttribute("receiptProducts");
         resp.sendRedirect("/homePageSeniorCashier?page=0&size="+ SQLConstants.PAGE_SIZE);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
     }
 }

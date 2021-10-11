@@ -41,6 +41,7 @@ public class SQLConstants {
 
     public static final String INSERT_RECEIPT = "insert into receipt (date_of_creation,user_id) values (?,?)";
     public static final String SELECT_RECEIPT_BY_ID = "select * from receipt where id = ?";
+    public static final String SELECT_ALL_FROM_RECEIPT_BY_ACTIVE_AND_CREATION_DATE = "select * from receipt where active = ? and date_of_creation between ? and ?";
     public static final String SELECT_RECEIPT_BY_ID_WITH_OWNER_NAME = "select receipt.id, receipt.date_of_creation, receipt.user_id, user.login from receipt " +
             "join user on user.id = receipt.user_id where receipt.id = ?";
     public static final String SELECT_PRODUCTS_BY_RECEIPT_ID = "select * from receipt_product where receipt_id = ?";
@@ -48,10 +49,11 @@ public class SQLConstants {
     public static final String SELECT_PAGE_RECEIPTS_BY_ID = "select * from receipt where id = ? LIMIT ?, ?";
     public static final String COUNT_ALL_RECEIPTS = "SELECT COUNT(*) FROM receipt";
     public static final String COUNT_ALL_RECEIPTS_BY_ID = "SELECT COUNT(*) FROM receipt WHERE id = ?";
-    public static final String UPDATE_RECEIPT_ACTIVE = "UPDATE receipt SET active = ? where id = ?";
+    public static final String UPDATE_RECEIPT_ACTIVE = "UPDATE receipt SET active = ?, total = ? where id = ?";
     public static final String FIELD_RECEIPT_ID = "id";
     public static final String FIELD_RECEIPT_DATE_OF_CREATION = "date_of_creation";
     public static final String FIELD_RECEIPT_USER_ID = "user_id";
+    public static final String FIELD_RECEIPT_TOTAL = "total";
     public static final String FIELD_RECEIPT_ACTIVE = "active";
     public static final String INSERT_PRODUCT_INTO_RECEIPT_PRODUCT = "insert into receipt_product (receipt_id,product_id,capacity,price) values (?,?,?,?)";
     public static final String DELETE_RECEIPT = "delete from receipt where receipt.id = ?";

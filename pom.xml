@@ -17,6 +17,8 @@
         <lombok_version>1.18.20</lombok_version>
         <mysql-version>8.0.26</mysql-version>
         <servlet-api-version>4.0.1</servlet-api-version>
+        <log4j-version>1.2.17</log4j-version>
+        <junit-param-version>5.7.0</junit-param-version>
     </properties>
 
     <dependencies>
@@ -48,6 +50,26 @@
             <artifactId>standard</artifactId>
             <version>1.1.2</version>
         </dependency>
+
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${log4j-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>RELEASE</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <version>${junit-param-version}</version>
+            <scope>test</scope>
+        </dependency>
+
 
     </dependencies>
 

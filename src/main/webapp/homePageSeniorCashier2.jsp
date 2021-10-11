@@ -28,6 +28,15 @@
    </div>
 
     <div class="header-right">
+
+    <form action="/createReportX" method="get">
+      <button type="submit" class="createReportX" ><fmt:message key="senior.reportX" /></button>
+    </form>
+
+    <form action="/createReportZ" method="get">
+      <button type="submit" class="createReportZ" ><fmt:message key="senior.reportZ" /></button>
+    </form>
+
     <form action="/changeLanguage" method="get">
       <input hidden="true" name="lang" value="en">
       <button type="submit" class="changeLanguage" ><fmt:message key="cash.EN" /></button>

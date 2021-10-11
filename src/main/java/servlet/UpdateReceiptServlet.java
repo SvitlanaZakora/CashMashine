@@ -20,6 +20,14 @@ public class UpdateReceiptServlet extends HttpServlet {
     ProductService productService = new ProductServiceImpl();
     ReceiptService receiptService = new ReceiptServiceImpl();
 
+    /**
+     * Updating receipt if receipt`s products not null.
+     *
+     * @param req HttpServletRequest
+     * @param resp HttpServletResponse
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int receiptId = Integer.parseInt(req.getParameter("recId"));
@@ -30,11 +38,6 @@ public class UpdateReceiptServlet extends HttpServlet {
             req.getSession().setAttribute("visibilityReceipts", "\"display: none;\"");
             resp.sendRedirect("/homePageSeniorCashier?page=0&size="+ SQLConstants.PAGE_SIZE);
         }
-
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
     }
 }

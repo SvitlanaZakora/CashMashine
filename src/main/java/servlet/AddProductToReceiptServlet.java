@@ -20,11 +20,15 @@ public class AddProductToReceiptServlet extends HttpServlet {
     ProductService productService= new ProductServiceImpl();
     ReceiptService receiptService= new ReceiptServiceImpl();
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-    }
-
+    /**
+     * Adding product to receipt by receipt_id. User can set name or code of product to adding to receipt.
+     *
+     * @param req HttpServletRequest
+     * @param resp HttpServletResponse
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Product product;

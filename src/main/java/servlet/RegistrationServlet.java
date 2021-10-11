@@ -27,6 +27,14 @@ public class RegistrationServlet extends HttpServlet {
         req.getRequestDispatcher("registration.jsp").forward(req, resp);
     }
 
+    /**
+     * Creating user if not exists.
+     *
+     * @param req HttpServletRequest
+     * @param resp HttpServletResponse
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String login = req.getParameter("login");
@@ -39,13 +47,6 @@ public class RegistrationServlet extends HttpServlet {
             service.createUser(user);
 
             req.getRequestDispatcher("registration.jsp").forward(req, resp);
-
-
-
-
-//            req.setAttribute("login", login);
-//            req.setAttribute("pass", pass);
-//            req.setAttribute("role", role);
         }
 
     }

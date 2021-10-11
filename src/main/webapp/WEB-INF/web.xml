@@ -103,6 +103,24 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>createReportX</servlet-name>
+        <servlet-class>servlet.CreateReportXServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>createReportX</servlet-name>
+        <url-pattern>/createReportX</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>createReportZ</servlet-name>
+        <servlet-class>servlet.CreateReportZServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>createReportZ</servlet-name>
+        <url-pattern>/createReportZ</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>search</servlet-name>
         <servlet-class>servlet.SearchServlet</servlet-class>
     </servlet>

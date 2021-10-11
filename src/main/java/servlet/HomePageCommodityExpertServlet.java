@@ -19,6 +19,14 @@ public class HomePageCommodityExpertServlet extends HttpServlet {
 
     ProductService productService = new ProductServiceImpl();
 
+    /**
+     * Demonstrating products on storage. Searching product if searchReq not null.
+     *
+     * @param req HttpServletRequest
+     * @param resp HttpServletResponse
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

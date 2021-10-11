@@ -24,6 +24,14 @@ public class CreateReceiptServlet extends HttpServlet {
         req.getRequestDispatcher("homePageCashier.jsp").forward(req, resp);
     }
 
+    /**
+     * Creating receipt if not exists.
+     *
+     * @param req HttpServletRequest
+     * @param resp HttpServletResponse
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if (req.getSession().getAttribute("receiptId")==null) {

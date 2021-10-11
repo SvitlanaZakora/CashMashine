@@ -24,6 +24,14 @@ public class HomePageCashierServlet extends HttpServlet {
 
     ProductService productService = new ProductServiceImpl();
 
+    /**
+     * Demonstrating active receipts if exists. Demonstrating products on storage. Searching product if searchReq not null.
+     *
+     * @param req HttpServletRequest
+     * @param resp HttpServletResponse
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Object receiptId = req.getSession().getAttribute("receiptId");

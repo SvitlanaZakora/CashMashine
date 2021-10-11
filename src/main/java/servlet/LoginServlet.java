@@ -27,16 +27,32 @@ public class LoginServlet extends HttpServlet {
         service = new UserServiceImpl();
     }
 
+    /**
+     * Demonstration roles in current language.
+     *
+     * @param req HttpServletRequest
+     * @param resp HttpServletResponse
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String sesionLang = (String) req.getSession().getAttribute("lang");
-        req.getSession().setAttribute("lang", sesionLang == null?"en":sesionLang);
+        String sessionLang = (String) req.getSession().getAttribute("lang");
+        req.getSession().setAttribute("lang", sessionLang == null?"en":sessionLang);
         List<Role> roleList =  service.getAllRolesByLang(req.getSession().getAttribute("lang").toString());
         req.getSession().setAttribute("roleList" , roleList);
         req.getSession().removeAttribute("error");
         req.getRequestDispatcher("registration.jsp").forward(req, resp);
     }
 
+    /**
+     * Entering in user`s account if pass and role match.
+     *
+     * @param req HttpServletRequest
+     * @param resp HttpServletResponse
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String lang = req.getParameter("lang") == null ? "en" : req.getParameter("lang");
@@ -61,11 +77,11 @@ public class LoginServlet extends HttpServlet {
                         break;
                 }
             }else {
-                req.getSession().setAttribute("error", "Invalide login or password");
+                req.getSession().setAttribute("error", "Invalid login or password");
                 req.getRequestDispatcher("registration.jsp").forward(req, resp);
             }
         }else {
-            req.getSession().setAttribute("error", "Invalide login or password");
+            req.getSession().setAttribute("error", "Invalid login or password");
             req.getRequestDispatcher("registration.jsp").forward(req, resp);
         }
     }

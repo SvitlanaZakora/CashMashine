@@ -13,6 +13,14 @@ import java.io.PrintWriter;
 @WebServlet
 public class LogOutServlet extends HttpServlet {
 
+    /**
+     * Invalidating session to exit from account.
+     *
+     * @param req HttpServletRequest
+     * @param resp HttpServletResponse
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession(false);
@@ -22,10 +30,5 @@ public class LogOutServlet extends HttpServlet {
 
             resp.sendRedirect("/login?lang="+lang);
         }
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
     }
 }

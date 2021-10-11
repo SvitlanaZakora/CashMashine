@@ -21,6 +21,14 @@ public class UpdateProductServlet extends HttpServlet {
     ProductService productService = new ProductServiceImpl();
     ReceiptService receiptService = new ReceiptServiceImpl();
 
+    /**
+     * Throwing error messages if product not exists.
+     *
+     * @param req HttpServletRequest
+     * @param resp HttpServletResponse
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOException {
         int receiptId = Integer.parseInt(req.getSession().getAttribute("receiptId").toString());
@@ -28,14 +36,23 @@ public class UpdateProductServlet extends HttpServlet {
         String productCode = req.getParameter("productCode");
         Product product = productService.getProductByCode(productCode);
         if(product==null){
-            System.out.println("no prod");
+            System.out.println("no product");
             return;
         }
         if(!receiptService.updateProduct(product.getId(), receiptId, capacity)){
-            System.out.println("no prod in receipt");
+            System.out.println("no product in receipt");
         }
 
     }
+
+    /**
+     * Updating product if code or name do not match with already existing product.
+     *
+     * @param req HttpServletRequest
+     * @param resp HttpServletResponse
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int id = Integer.parseInt(req.getParameter("id"));

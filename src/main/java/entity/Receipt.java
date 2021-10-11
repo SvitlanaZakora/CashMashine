@@ -17,6 +17,7 @@ public class Receipt {
     private int ownerId;
     private String ownerName;
     private List<Product> products;
+    private double total;
     private boolean active;
 
 
